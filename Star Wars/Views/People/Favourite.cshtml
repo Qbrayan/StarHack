@@ -1,0 +1,65 @@
+﻿@model IEnumerable<StarWars.Models.Person>
+    @{
+        ViewData["Title"] = "features";
+    }
+    <br/>
+    <div class="container row">
+        <div class="col-sm-9">
+            <h2 class="text-info">Favourite List</h2>
+        </div>
+
+        <div class="col-sm-12">
+            <form method="post">
+                @if (Model !=null)
+                {
+                    <table class="table table-striped table-bordered">
+                        <tr class="table-responsive">
+                            <th>
+                                <label>Name</label>
+                            </th>
+                            <th>
+                                <label>Height</label>
+                            </th>
+                            <th>
+                                <label>Mass</label>
+                            </th>
+                            <th>
+                                <label>Homeworld</label>
+                            </th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @item.name
+                            </td>
+                            <td>
+                                @item.height
+                            </td>
+                            <td>
+                                @item.mass
+                            </td>
+                            <td>
+                                @item.homeworld
+                            </td>
+                            <td>
+                                    <button asp-action="Delete" asp-controller="People" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger  form-control text-center">Delete</button>
+                            </td>
+
+                        </tr>
+                        }
+                    </table>
+
+                }
+                else
+                {
+                    <p>No characters available</p>
+                }
+            </form>
+        </div>
+    </div>
+
+
+
+

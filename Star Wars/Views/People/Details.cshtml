@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "features";
+}
+@model StarWars.Models.Person
+<div class="container row">
+    <div class="col-sm-9">
+        <h2 class="text-info">Details</h2>
+    </div>
+
+    <div class="col-sm-12">
+        <form method="post">
+            @if (Model != null)
+            {
+                var id = @Model.url.Substring(Model.url.Length - 2, 1);
+                var f = string.Join(',', @Model.films);
+                var s = string.Join(',', @Model.species);
+                var v = string.Join(',', @Model.vehicles);
+                var st = string.Join(',', @Model.starships);
+
+
+                    <input asp-for="Id" hidden value="@id" />
+                    <table class="table table-striped table-bordered">
+                        <tr class="table-responsive">
+                            <th>
+                                <label>Feature</label>
+                            </th>
+                            <th>
+                                <label>Value</label>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td> Name</td>
+                            <td>
+                                <input asp-for="name" style="border-color:transparent" readonly value="@Model.name" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Height</td>
+                            <td><input asp-for="height" style="border-color:transparent" readonly value="@Model.height" /></td>
+                        </tr>
+                        <tr>
+                            <td> Mass</td>
+                            <td><input asp-for="mass" style="border-color:transparent" readonly value="@Model.mass" /></td>
+                        </tr>
+                        <tr>
+                            <td> Hair Color</td>
+                            <td>@Model.hair_color</td>
+                        </tr>
+                        <tr>
+                            <td> Skin Color</td>
+                            <td>@Model.skin_color</td>
+                        </tr>
+                        <tr>
+                            <td> Eye Color</td>
+                            <td>@Model.eye_color</td>
+                        </tr>
+                        <tr>
+                            <td> Birth Year</td>
+                            <td>@Model.birth_year</td>
+                        </tr>
+                        <tr>
+                            <td> Gender</td>
+                            <td>@Model.gender</td>
+                        </tr>
+                        <tr>
+                            <td> Homeworld</td>
+                            <td><input asp-for="homeworld" style="border-color:transparent" readonly value="@Model.homeworld" /></td>
+                        </tr>
+                        <tr>
+                            <td> Films</td>
+                            <td> @f</td>
+                        </tr>
+                        <tr>
+                            <td> Species</td>
+                            <td>@s</td>
+                        </tr>
+                        <tr>
+                            <td> Vehicles</td>
+                            <td>@v</td>
+                        </tr>
+                        <tr>
+                            <td> Starships</td>
+                            <td>@st</td>
+                        </tr>
+                        <tr>
+                            <td> Created</td>
+                            <td>@Model.created</td>
+                        </tr>
+                        <tr>
+                            <td> Edited</td>
+                            <td>@Model.edited</td>
+                        </tr>
+                        <tr>
+                            <td> Path</td>
+                            <td>@Model.url</td>
+                        </tr>
+                    </table>
+                    <div class="form-group row">
+                        <div class="col-sm-3 col-sm-offset-3">
+                            <button type="submit" class="btn btn-primary form-control">
+                                Add Favourite
+                            </button>
+                        </div>
+                        <div class="col-sm-3">
+                            <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                        </div>
+                    </div>
+
+                    }
+                    else
+                    {
+                    <p>No data available</p>
+                    }
+            </form>
+    </div>
+</div>
+
+@section Scripts{ 
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
